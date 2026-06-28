@@ -44,7 +44,7 @@
     };
 
     # Set your time zone.
-    time.timeZone = "Europe/London";
+    time.timeZone = "Europe/Paris";
 
     # Configure network proxy if necessary
     # networking.proxy.default = "http://user:password@proxy:port/";
