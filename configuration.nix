@@ -3,6 +3,7 @@
   flake.nixosModules.configuration = { pkgs, lib, ... }: {
     imports = [
       self.nixosModules.hardware
+      self.nixosModules.disko
       # self.nixosModules.niri
       # self.nixosModules.gaming
       # self.nixosModules.distrobox
