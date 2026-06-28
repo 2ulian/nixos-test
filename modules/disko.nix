@@ -1,6 +1,6 @@
 { self, inputs, config, ... }: {
 
-  flake.nixosModules.disko = { pkgs, lib, ... }: {
+  flake.nixosModules.disko = { self, pkgs, lib, ... }: {
     fileSystems."/nix".neededForBoot = true;
     fileSystems."/persistent".neededForBoot = true; # sometimes needed too
 
