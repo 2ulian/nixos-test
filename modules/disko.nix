@@ -37,7 +37,6 @@
             };
           };
 
-          };
           content.partitions.luks = {
             size = "100%";
             label = "luks";
