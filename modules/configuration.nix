@@ -4,17 +4,17 @@
     imports = [
       self.nixosModules.hardware
       self.nixosModules.disko
-      # self.nixosModules.niri
-      # self.nixosModules.gaming
-      # self.nixosModules.distrobox
-      # self.nixosModules.davinci
+      self.nixosModules.niri
+      self.nixosModules.gaming
+      self.nixosModules.distrobox
+      self.nixosModules.davinci
       inputs.preservation.nixosModules.preservation
       inputs.disko.nixosModules.disko
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        #home-manager.users.fellwin = config.flake.homeModules.fellwin;
+        home-manager.users.fellwin = config.flake.homeModules.fellwin;
       }
     ];
 
@@ -30,7 +30,8 @@
     networking.nftables.enable = true;
 
     nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
-    boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v3;
+    boot.kernelPackages =
+      pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v3;
     boot.kernel.sysctl = {
       "net.core.rmem_max" = 16777216;
       "net.core.wmem_max" = 16777216;
@@ -57,9 +58,6 @@
     };
 
     virtualisation.waydroid.enable = true;
-
-    # Enable the X11 windowing system.
-    services.xserver.enable = true;
 
     # Configure keymap in X11
     services.xserver.xkb.layout = "fr";
@@ -158,7 +156,14 @@
           "/etc/mullvad-vpn"
           #"/var/lib/systemd/coredump"
           "/etc/NetworkManager/system-connections"
+          # for distrobox:
+          "/var/lib/containers"
           #{ directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+          # for ollama:
+          {
+            directory = "/var/lib/private";
+            mode = "0700";
+          }
           {
             directory = "/var/lib/nixos";
             inInitrd = true;
