@@ -1,70 +1,71 @@
-{
-  fileSystems."/nix".neededForBoot = true;
-  fileSystems."/persistent".neededForBoot = true; # sometimes needed too
+{ self, inputs, config, ... }: {
 
-  disko.devices.nodev = {
-    "/" = {
-      fsType = "tmpfs";
-      mountOptions = [
-        "size=25%"
-        "mode=755"
-      ];
-    };
-  };
+  flake.nixosModules.disko = { pkgs, lib, ... }: {
+    fileSystems."/nix".neededForBoot = true;
+    fileSystems."/persistent".neededForBoot = true; # sometimes needed too
 
-  disko.devices.disk.main = {
-    device = "/dev/sdb";
-    type = "disk";
-
-    content.type = "gpt";
-
-    content.partitions.boot = {
-      name = "boot";
-      size = "1M";
-      type = "EF02";
-    };
-
-    content.partitions.esp = {
-      name = "ESP";
-      size = "1G";
-      type = "EF00";
-
-      content = {
-        type = "filesystem";
-        format = "vfat";
-        mountpoint = "/boot";
+    disko.devices.nodev = {
+      "/" = {
+        fsType = "tmpfs";
+        mountOptions = [ "size=25%" "mode=755" ];
       };
     };
 
-    content.partitions.swap = {
-      size = "4G";
+    disko.devices.disk.main = {
+      device = "/dev/sdb";
+      type = "disk";
 
-      content = {
-        type = "swap";
-        resumeDevice = true;
+      content.type = "gpt";
+
+      content.partitions.boot = {
+        name = "boot";
+        size = "1M";
+        type = "EF02";
       };
-    };
 
-    content.partitions.root = {
-      name = "root";
-      size = "100%";
+      content.partitions.esp = {
+        name = "ESP";
+        size = "1G";
+        type = "EF00";
 
-      content = {
-        type = "btrfs";
-        extraArgs = ["-f"];
+        content = {
+          type = "filesystem";
+          format = "vfat";
+          mountpoint = "/boot";
+        };
+      };
 
-        subvolumes = {
-          "/persistent" = {
-            mountOptions = ["subvol=persistent" "noatime"];
-            mountpoint = "/persistent";
-          };
+      content.partitions.swap = {
+        size = "4G";
 
-          "/nix" = {
-            mountOptions = ["subvol=nix" "noatime"];
-            mountpoint = "/nix";
+        content = {
+          type = "swap";
+          resumeDevice = true;
+        };
+      };
+
+      content.partitions.root = {
+        name = "root";
+        size = "100%";
+
+        content = {
+          type = "btrfs";
+          extraArgs = [ "-f" ];
+
+          subvolumes = {
+            "/persistent" = {
+              mountOptions = [ "subvol=persistent" "noatime" ];
+              mountpoint = "/persistent";
+            };
+
+            "/nix" = {
+              mountOptions = [ "subvol=nix" "noatime" ];
+              mountpoint = "/nix";
+            };
           };
         };
       };
     };
   };
 }
+
