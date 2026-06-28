@@ -4,13 +4,6 @@
     fileSystems."/nix".neededForBoot = true;
     fileSystems."/persistent".neededForBoot = true; # sometimes needed too
 
-    disko.devices.nodev = {
-      "/" = {
-        fsType = "tmpfs";
-        mountOptions = [ "size=25%" "mode=755" ];
-      };
-    };
-
     disko.devices = {
       disk = {
         sdb = {
@@ -64,13 +57,28 @@
                   };
 
                   "/persistent" = {
-                    mountOptions = [ "subvol=persistent" "noatime" ];
                     mountpoint = "/persistent";
+                    mountOptions =
+                      [ "subvol=persistent" "compress=zstd" "noatime" ];
+                  };
+                  "/home" = {
+                    mountpoint = "/home";
+                    mountOptions = [ "subvol=home" "compress=zstd" "noatime" ];
                   };
 
                   "/nix" = {
-                    mountOptions = [ "subvol=nix" "noatime" ];
                     mountpoint = "/nix";
+                    mountOptions = [ "subvol=nix" "compress=zstd" "noatime" ];
+                  };
+
+                  "/log" = {
+                    mountpoint = "/var/log";
+                    mountOptions = [ "subvol=log" "compress=zstd" "noatime" ];
+                  };
+
+                  "/swap" = {
+                    mountpoint = "/swap";
+                    swap.swapfile.size = "32G";
                   };
                 };
               };
