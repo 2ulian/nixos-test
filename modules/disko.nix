@@ -6,7 +6,7 @@
 
     disko.devices = {
       disk = {
-        sdb = {
+        main = {
           device = "/dev/sdb";
           type = "disk";
 
