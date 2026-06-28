@@ -1,6 +1,6 @@
 { self, inputs, config, ... }: {
 
-  flake.nixosModules.frameworkConfiguration = { pkgs, lib, ... }: {
+  flake.nixosModules.configuration = { pkgs, lib, ... }: {
     imports = [
       self.nixosModules.hardware
       # self.nixosModules.niri
