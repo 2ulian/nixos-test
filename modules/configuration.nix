@@ -30,7 +30,7 @@
     networking.nftables.enable = true;
 
     nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
-    #boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v4;
+    boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v3;
     boot.kernel.sysctl = {
       "net.core.rmem_max" = 16777216;
       "net.core.wmem_max" = 16777216;
