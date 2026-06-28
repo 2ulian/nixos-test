@@ -63,6 +63,12 @@
             extraArgs = [ "-f" ];
 
             subvolumes = {
+
+              "/root" = {
+                mountpoint = "/";
+                mountOptions = [ "subvol=root" "compress=zstd" "noatime" ];
+              };
+
               "/persistent" = {
                 mountOptions = [ "subvol=persistent" "noatime" ];
                 mountpoint = "/persistent";
@@ -77,12 +83,6 @@
         };
       };
     };
-  };
-
-  content.partitions.root = {
-    name = "root";
-    size = "100%";
-
   };
 }
 
