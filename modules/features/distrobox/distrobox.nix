@@ -62,7 +62,5 @@
     environment.extraInit = ''
       export PATH="$PATH:$HOME/.local/distrobox-bin"
     '';
-
-    };
   };
 }
