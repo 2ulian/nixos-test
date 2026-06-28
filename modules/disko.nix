@@ -59,20 +59,18 @@
             crypttabExtraOpts = [ "fido2-device=auto" "token-timeout=10" ];
           };
           content = {
-            content = {
-              type = "btrfs";
-              extraArgs = [ "-f" ];
+            type = "btrfs";
+            extraArgs = [ "-f" ];
 
-              subvolumes = {
-                "/persistent" = {
-                  mountOptions = [ "subvol=persistent" "noatime" ];
-                  mountpoint = "/persistent";
-                };
+            subvolumes = {
+              "/persistent" = {
+                mountOptions = [ "subvol=persistent" "noatime" ];
+                mountpoint = "/persistent";
+              };
 
-                "/nix" = {
-                  mountOptions = [ "subvol=nix" "noatime" ];
-                  mountpoint = "/nix";
-                };
+              "/nix" = {
+                mountOptions = [ "subvol=nix" "noatime" ];
+                mountpoint = "/nix";
               };
             };
           };
