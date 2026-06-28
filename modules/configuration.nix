@@ -14,7 +14,7 @@
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.users.fellwin = config.flake.homeModules.fellwin;
+        #home-manager.users.fellwin = config.flake.homeModules.fellwin;
       }
     ];
 
