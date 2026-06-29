@@ -80,7 +80,7 @@
     # p10k configuration:
     home.file = {
       ".p10k.zsh" = {
-        source = config.lib.file.mkOutOfStoreSymlink "/home/fellwin/nixos-config/dotfiles/.p10k.zsh";
+        source = config.lib.file.mkOutOfStoreSymlink "/home/yurii/nixos-config/dotfiles/.p10k.zsh";
       };
     };
 

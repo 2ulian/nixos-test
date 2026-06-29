@@ -31,7 +31,7 @@
       (pkgs.writeShellApplication {
         name = "pacman";
         text = ''
-          /home/fellwin/.local/distrobox-bin/pacman "$@" && su - fellwin -c "/home/fellwin/nixos-config/modules/features/distrobox/export-distrobox-bin.sh &> /dev/null"
+          /home/yurii/.local/distrobox-bin/pacman "$@" && su - yurii -c "/home/yurii/nixos-config/modules/features/distrobox/export-distrobox-bin.sh &> /dev/null"
         '';
       })
 
@@ -45,14 +45,14 @@
             echo "Do not run $bin as root/sudo."
             exit 1
           else
-            /home/fellwin/.local/distrobox-bin/yay "$@" && /home/fellwin/nixos-config/modules/features/distrobox/export-distrobox-bin.sh &> /dev/null
+            /home/yurii/.local/distrobox-bin/yay "$@" && /home/yurii/nixos-config/modules/features/distrobox/export-distrobox-bin.sh &> /dev/null
           fi
         '';
       })
     ];
 
     security.sudo.extraRules = [{
-      users = [ "fellwin" ];
+      users = [ "yurii" ];
       commands = [{
         command = "/run/current-system/sw/bin/podman";
         options = [ "NOPASSWD" ];

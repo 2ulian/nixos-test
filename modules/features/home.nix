@@ -1,7 +1,7 @@
 { config, pkgs, inputs, self, ... }:
 
 {
-  flake.homeModules.fellwin = { pkgs, config, lib, ... }: {
+  flake.homeModules.yurii = { pkgs, config, lib, ... }: {
     imports = [
       self.homeModules.zsh
       self.homeModules.foot
@@ -11,8 +11,8 @@
     ];
     # Home Manager needs a bit of information about you and the
     # paths it should manage.
-    home.username = "fellwin";
-    home.homeDirectory = "/home/fellwin";
+    home.username = "yurii";
+    home.homeDirectory = "/home/yurii";
 
     services.syncthing.enable = true;
 
@@ -69,7 +69,7 @@
 
     home.file = {
       ".config/DankMaterialShell" = {
-        source = config.lib.file.mkOutOfStoreSymlink "/home/fellwin/nixos-config/dotfiles/DankMaterialShell";
+        source = config.lib.file.mkOutOfStoreSymlink "/home/yurii/nixos-config/dotfiles/DankMaterialShell";
       };
     };
 

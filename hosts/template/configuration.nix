@@ -5,16 +5,16 @@
       self.nixosModules.hardware
       self.nixosModules.disko
       self.nixosModules.niri
-      self.nixosModules.gaming
-      self.nixosModules.distrobox
-      self.nixosModules.davinci
+      #self.nixosModules.gaming
+      #self.nixosModules.distrobox
+      #self.nixosModules.davinci
       inputs.preservation.nixosModules.preservation
       inputs.disko.nixosModules.disko
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.users.fellwin = config.flake.homeModules.fellwin;
+        home-manager.users.yurii = config.flake.homeModules.yurii;
       }
     ];
 
@@ -78,7 +78,7 @@
     # services.libinput.enable = true;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.fellwin = {
+    users.users.yurii = {
       isNormalUser = true;
       extraGroups =
         [ "wheel" "networkmanager" "libvirtd" ]; # Enable ‘sudo’ for the user.
@@ -196,7 +196,7 @@
 
     # Virtualisation
     programs.virt-manager.enable = true;
-    users.groups.libvirtd.members = [ "fellwin" ];
+    users.groups.libvirtd.members = [ "yurii" ];
     virtualisation.libvirtd.enable = true;
     virtualisation.spiceUSBRedirection.enable = true;
     networking.firewall.trustedInterfaces = [ "virbr0" "virbr1" "virbr2" ];

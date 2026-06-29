@@ -7,7 +7,7 @@
     disko.devices = {
       disk = {
         main = {
-          device = "/dev/vda";
+          device = "";
           type = "disk";
 
           content.type = "gpt";
@@ -73,7 +73,7 @@
 
                   "/swap" = {
                     mountpoint = "/swap";
-                    swap.swapfile.size = "32G";
+                    swap.swapfile.size = "";
                   };
                 };
               };
