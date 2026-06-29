@@ -4,7 +4,7 @@
     imports = [
       self.nixosModules.hardware
       self.nixosModules.disko
-      self.nixosModules.niri
+      #self.nixosModules.niri
       #self.nixosModules.gaming
       #self.nixosModules.distrobox
       #self.nixosModules.davinci
@@ -14,7 +14,7 @@
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.users.yurii = config.flake.homeModules.yurii;
+        #home-manager.users.yurii = config.flake.homeModules.yurii;
       }
     ];
 
