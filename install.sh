@@ -56,7 +56,7 @@ then
     fi
 fi
 
-echo -n "The installation will now start, everything on /dev/${device} will be wiped. Continue?  [Y/n] "
+echo -n "The installation will now start, disk will be wiped. Continue?  [Y/n] "
 read answer
 if [[ $answer == "" || $answer = "y" || $answer == "Y" ]]
 then
