@@ -48,6 +48,8 @@ then
         sed -i '$ i\};' $dirname/hosts/$name/hardware-configuration.nix
         nix-shell -p nixfmt --run "nixfmt ${dirname}/hosts/${name}/hardware-configuration.nix"
 
+        git add $dirname
+
         echo "New profile created"
     else
         exit 1
