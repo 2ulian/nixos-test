@@ -1,7 +1,8 @@
 {
   nixConfig = {
     extra-substituters = [ "https://attic.xuyh0120.win/lantian" ];
-    extra-trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
+    extra-trusted-public-keys =
+      [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
   };
 
   inputs = {
@@ -28,10 +29,10 @@
   };
 
   outputs = inputs:
-  inputs.flake-parts.lib.mkFlake { inherit inputs; } (
-    (inputs.import-tree ./modules)
-    (inputs.import-tree ./hosts)
-    {
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [ (inputs.import-tree ./modules) (inputs.import-tree ./hosts) ];
+
       _module.args = { inherit (inputs) nix-cachyos-kernel; };
-    });
+
+    };
 }
