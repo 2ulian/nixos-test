@@ -29,7 +29,7 @@
 
   outputs = inputs:
   inputs.flake-parts.lib.mkFlake { inherit inputs; } (
-    (inputs.import-tree ./)
+    (inputs.import-tree ./modules ./hosts)
     {
       _module.args = { inherit (inputs) nix-cachyos-kernel; };
     });
